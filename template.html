@@ -1,0 +1,206 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widget Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+    </script>
+    <style>
+    html{background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);height:100%}
+    body{font-family:Inter,sans-serif}
+    .glass-widget{
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 1.5rem;
+    }
+    input[type=checkbox].custom{
+      appearance:none;
+      -webkit-appearance:none;
+      width:1.25rem;
+      height:1.25rem;
+      border:2px solid rgba(0,0,0,.4);
+      border-radius:9999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:all .15s;
+      background: rgba(255, 255, 255, 0.3);
+    }
+    input[type=checkbox].custom:checked{
+      background: rgba(0,0,0,.8);
+      border-color: rgba(0,0,0,.8);
+    }
+    input[type=checkbox].custom:checked::after{
+      content:'';
+      width:.5rem;
+      height:.5rem;
+      background: white;
+      border-radius:9999px;
+    }
+    .calendar-day {
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+    </style>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=IBM+Plex+Serif:wght@300;400;500;600;700&amp;family=IBM+Plex+Mono:wght@300;400;500;600;700&amp;family=Inter&amp;display=swap" rel="stylesheet">
+    </head>
+    <body class="min-h-screen flex flex-col items-center justify-center gap-6 bg-[url(https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?w=1080&amp;q=80)] bg-cover pt-6 pr-6 pb-6 pl-6">
+    
+    <div class="glass-widget w-full max-w-5xl p-6 overflow-x-auto shadow-xl">
+      <div class="flex sm:justify-around gap-8">
+        <div class="flex flex-col items-center min-w-[120px]">
+          <div class="relative w-24 h-24">
+            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="48" stroke="rgba(0,0,0,0.3)" stroke-width="4" fill="none"></circle>
+              <line x1="50" y1="50" x2="50" y2="30" stroke="rgba(0,0,0,0.8)" stroke-width="4" stroke-linecap="round" transform="rotate(30 50 50)"></line>
+              <line x1="50" y1="50" x2="50" y2="20" stroke="rgba(0,0,0,0.6)" stroke-width="2" stroke-linecap="round" transform="rotate(180 50 50)"></line>
+            </svg>
+          </div>
+          <div class="font-semibold text-gray-800 mt-2">Montreal</div>
+          <div class="text-xs text-gray-600">Today</div>
+          <div class="text-xs text-gray-600">+0HRS</div>
+        </div>
+        <div class="flex flex-col items-center min-w-[120px]">
+          <div class="relative w-24 h-24">
+            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="48" stroke="rgba(0,0,0,0.3)" stroke-width="4" fill="none"></circle>
+              <line x1="50" y1="50" x2="50" y2="30" stroke="rgba(0,0,0,0.8)" stroke-width="4" stroke-linecap="round" transform="rotate(150 50 50)"></line>
+              <line x1="50" y1="50" x2="50" y2="20" stroke="rgba(0,0,0,0.6)" stroke-width="2" stroke-linecap="round" transform="rotate(300 50 50)"></line>
+            </svg>
+          </div>
+          <div class="font-semibold text-gray-800 mt-2">Seoul</div>
+          <div class="text-xs text-gray-600">Tomorrow</div>
+          <div class="text-xs text-gray-600">+14HRS</div>
+        </div>
+        <div class="flex flex-col items-center min-w-[120px]">
+          <div class="relative w-24 h-24">
+            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="48" stroke="rgba(0,0,0,0.3)" stroke-width="4" fill="none"></circle>
+              <line x1="50" y1="50" x2="50" y2="30" stroke="rgba(0,0,0,0.8)" stroke-width="4" stroke-linecap="round" transform="rotate(210 50 50)"></line>
+              <line x1="50" y1="50" x2="50" y2="20" stroke="rgba(0,0,0,0.6)" stroke-width="2" stroke-linecap="round" transform="rotate(60 50 50)"></line>
+            </svg>
+          </div>
+          <div class="font-semibold text-gray-800 mt-2">Mumbai</div>
+          <div class="text-xs text-gray-600">Tomorrow</div>
+          <div class="text-xs text-gray-600">+10HRS</div>
+        </div>
+        <div class="flex flex-col items-center min-w-[120px]">
+          <div class="relative w-24 h-24">
+            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="48" stroke="rgba(0,0,0,0.3)" stroke-width="4" fill="none" class=""></circle>
+              <line x1="50" y1="50" x2="50" y2="30" stroke="rgba(0,0,0,0.8)" stroke-width="4" stroke-linecap="round" transform="rotate(300 50 50)"></line>
+              <line x1="50" y1="50" x2="50" y2="20" stroke="rgba(0,0,0,0.6)" stroke-width="2" stroke-linecap="round" transform="rotate(120 50 50)" class=""></line>
+            </svg>
+          </div>
+          <div class="font-semibold text-gray-800 mt-2">Berlin</div>
+          <div class="text-xs text-gray-600">Today</div>
+          <div class="text-xs text-gray-600">+6HRS</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="flex w-full max-w-5xl gap-6 flex-col md:flex-row">
+      <div class="glass-widget flex-1 p-6 shadow-xl">
+        <div class="uppercase text-sm font-semibold text-gray-800 tracking-widest">November</div>
+        <div class="grid grid-cols-7 gap-1 mt-4 text-center text-gray-600 text-xs">
+          <div>S</div><div>M</div><div class="">T</div><div class="">W</div><div>T</div><div>F</div><div class="">S</div>
+        </div>
+        <div id="calendarDates" class="grid grid-cols-7 gap-1 mt-3 text-center text-gray-800 text-sm"><div class="calendar-day">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div><div class="calendar-day">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day bg-gray-800 text-white rounded-full">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div><div class="calendar-day">15</div><div class="calendar-day">16</div><div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day">21</div><div class="calendar-day">22</div><div class="calendar-day">23</div><div class="calendar-day">24</div><div class="calendar-day">25</div><div class="calendar-day">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div><div class="calendar-day">29</div><div class="calendar-day">30</div></div>
+      </div>
+    
+      <div class="glass-widget w-full md:w-72 p-6 flex flex-col shadow-xl">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-semibold text-gray-800">Reminders</h2>
+          <span class="text-3xl font-bold text-gray-800">5</span>
+        </div>
+        <div class="flex flex-col gap-4 mt-6">
+          <label class="flex items-center gap-3 text-gray-800">
+            <input type="checkbox" class="custom">
+            <span class="text-lg">Weekly grocery run</span>
+          </label>
+          <label class="flex items-center gap-3 text-gray-800">
+            <input type="checkbox" class="custom">
+            <span class="text-lg">Book club meeting</span>
+          </label>
+          <label class="flex items-center gap-3 text-gray-800">
+            <input type="checkbox" class="custom">
+            <span class="text-lg">Update portfolio</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    
+    <div class="glass-widget w-full max-w-5xl p-6 shadow-xl">
+      <div class="flex justify-between items-start">
+        <div class="">
+          <h2 class="text-xl font-semibold text-gray-800">Vancouver</h2>
+          <div class="text-gray-800 font-light text-6xl leading-none mt-1">42°</div>
+        </div>
+        <div class="flex flex-col items-end text-gray-800">
+          <div class="w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full mb-2"></div>
+          <div class="text-right text-sm">Overcast H:45° L:38°</div>
+        </div>
+      </div>
+      <div class="grid grid-cols-6 gap-4 mt-6 text-center">
+        <div class="text-gray-800 flex flex-col items-center">
+          <span class="text-sm mb-2">2 PM</span>
+          <div class="w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full mb-2"></div>
+          <span class="text-sm">42°</span>
+        </div>
+        <div class="text-gray-800 flex flex-col items-center">
+          <span class="text-sm mb-2">3 PM</span>
+          <div class="w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full mb-2"></div>
+          <span class="text-sm">43°</span>
+        </div>
+        <div class="text-gray-800 flex flex-col items-center">
+          <span class="text-sm mb-2">4 PM</span>
+          <div class="w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full mb-2"></div>
+          <span class="text-sm">44°</span>
+        </div>
+        <div class="text-gray-800 flex flex-col items-center">
+          <span class="text-sm mb-2">5 PM</span>
+          <div class="w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full mb-2"></div>
+          <span class="text-sm">43°</span>
+        </div>
+        <div class="text-gray-800 flex flex-col items-center">
+          <span class="text-sm mb-2">6 PM</span>
+          <div class="w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full mb-2"></div>
+          <span class="text-sm">41°</span>
+        </div>
+        <div class="text-gray-800 flex flex-col items-center">
+          <span class="text-sm mb-2">7 PM</span>
+          <div class="w-4 h-4 bg-gray-500 rounded-full mb-2"></div>
+          <span class="text-sm">40°</span>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+    (function(){
+      const datesEl=document.getElementById('calendarDates'),t=new Date,y=t.getFullYear(),m=t.getMonth(),first=new Date(y,m,1).getDay(),days=new Date(y,m+1,0).getDate(),prev=new Date(y,m,0).getDate();let html='';
+      for(let i=0;i<first;i++)html+=`<div class="text-gray-500 calendar-day">${prev-first+i+1}</div>`;
+      for(let d=1;d<=days;d++){const today=d===t.getDate();html+=`<div class="calendar-day ${today?'bg-gray-800 text-white rounded-full':''}">${d}</div>`}
+      datesEl.innerHTML=html
+    })();
+    </script>
+    
+    </body></html>
+    
+    
+    
+    

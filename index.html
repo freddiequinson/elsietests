@@ -7,25 +7,61 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        #shader-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.7;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
 </head>
 <body>
+    <!-- Background Shader -->
+    <iframe id="shader-background" src="background.html" frameborder="0"></iframe>
+    <div class="content-wrapper">
     <div class="container">
         <header>
-            <h1>Network Fundamentals Quiz</h1>
-            <div class="progress-container">
-                <div class="progress-bar" id="progressBar"></div>
-            </div>
-            <div class="score-container">
-                <span>Score: <span id="score">0</span></span>
-                <span>High Score: <span id="highScore">0</span></span>
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Network Fundamentals Quiz</h1>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    <div class="score-container">
+                        <span>Score: <span id="score">0</span></span>
+                        <span>High Score: <span id="highScore">0</span></span>
+                    </div>
+                </div>
+                <nav>
+                    <a href="#" id="view-leaderboard" class="leaderboard-link">
+                        <i class="fas fa-trophy"></i> Leaderboard
+                    </a>
+                </nav>
             </div>
         </header>
 
         <main>
             <div id="start-screen" class="screen">
-                <h2>Welcome to Your Network Fundamentals Quiz, Elsie!</h2>
-                <p>Test your knowledge of networking concepts with 20 randomly selected questions per session.</p>
-                <button id="start-btn" class="btn">Start Quiz</button>
+                <div class="start-content">
+                    <h2>Welcome to Your Network Fundamentals Quiz, Elsie!</h2>
+                    <p>Test your knowledge of networking concepts with 20 randomly selected questions per session. Challenge yourself and climb the leaderboard!</p>
+                    <div class="start-actions">
+                        <button id="start-btn" class="btn btn-primary">
+                            <i class="fas fa-play"></i> Start Quiz
+                        </button>
+                        <a href="#" id="view-leaderboard-btn" class="btn btn-secondary">
+                            <i class="fas fa-trophy"></i> View Leaderboard
+                        </a>
+                    </div>
+                </div>
             </div>
 
             <div id="quiz-screen" class="screen hidden">
@@ -48,6 +84,7 @@
                     </div>
                 </div>
                 <div class="result-actions">
+                    <button id="view-final-results" class="btn">View Detailed Results</button>
                     <button id="review-btn" class="btn">Review Answers</button>
                     <button id="restart-btn" class="btn">Take Another Quiz</button>
                 </div>
@@ -60,13 +97,90 @@
                 </div>
                 <button id="back-to-results" class="btn">Back to Results</button>
             </div>
+
+            <div id="final-results-screen" class="screen hidden">
+                <div class="final-results-container">
+                    <div class="score-summary">
+                        <h2>Quiz Results</h2>
+                        <div class="score-display">
+                            <div class="score-circle">
+                                <span id="final-score-display">0/0</span>
+                                <div id="score-percentage">0%</div>
+                            </div>
+                            <h3 id="score-message">Great Job!</h3>
+                        </div>
+                        
+                        <div class="score-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Correct Answers:</span>
+                                <span class="detail-value"><span id="correct-answers">0</span>/<span id="total-questions-count">20</span></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Time Taken:</span>
+                                <span class="detail-value" id="time-taken">0m 0s</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Date:</span>
+                                <span class="detail-value" id="quiz-date">Today</span>
+                            </div>
+                        </div>
+                        
+                        <div class="result-actions">
+                            <button id="detailed-review-btn" class="btn">View Detailed Review</button>
+                            <button id="print-results-btn" class="btn btn-secondary">
+                                <i class="fas fa-print"></i> Print Results
+                            </button>
+                            <button id="final-restart-btn" class="btn">Take Another Quiz</button>
+                        </div>
+                    </div>
+                    
+                    <div class="score-history">
+                        <h3>Your Quiz History</h3>
+                        <div id="score-history-list" class="score-history-list">
+                            <!-- Score history will be inserted here -->
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-results">
+                        <h3>Question-by-Question Results</h3>
+                        <div id="quiz-results" class="quiz-results-container">
+                            <!-- Question results will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
+    </div>
+
+    <!-- Leaderboard Screen -->
+    <div id="leaderboard-screen" class="screen hidden">
+        <div class="leaderboard-container">
+            <h2><i class="fas fa-trophy"></i> Leaderboard</h2>
+            <div class="leaderboard-filters">
+                <button class="btn btn-filter active" data-filter="all">All Time</button>
+                <button class="btn btn-filter" data-filter="month">This Month</button>
+                <button class="btn btn-filter" data-filter="week">This Week</button>
+            </div>
+            <div class="leaderboard-list" id="leaderboard-list">
+                <!-- Leaderboard items will be inserted here by JavaScript -->
+                <div class="leaderboard-empty">
+                    <i class="fas fa-trophy empty-icon"></i>
+                    <p>No scores yet. Be the first to take the quiz!</p>
+                </div>
+            </div>
+            <div class="leaderboard-actions">
+                <button id="back-to-home" class="btn btn-primary">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </button>
+            </div>
+        </div>
     </div>
 
     <footer>
         <p>Created for Elsie Yelbert - Network Fundamentals Practice</p>
     </footer>
 
+    <script src="js/leaderboard.js"></script>
     <script src="js/questions.js"></script>
     <script src="js/app.js"></script>
 </body>
